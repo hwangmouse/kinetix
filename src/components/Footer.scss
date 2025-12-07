@@ -1,0 +1,33 @@
+/* components/Footer.scss */
+
+.pk-footer {
+  margin-top: 48px;
+  background-color: #002645; // dark navy
+  color: #f5f5f5;
+  padding: 18px 12px 24px;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+.pk-footer__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pk-footer__small-text {
+  font-size: 10px;
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+}
+
+.pk-footer__main-text {
+  font-size: 9px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.pk-footer__tiny-text {
+  font-size: 8px;
+  opacity: 0.8;
+  line-height: 1.4;
+}

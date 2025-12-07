@@ -1,0 +1,71 @@
+/* components/Header.scss */
+
+.pk-header {
+  width: 100%;
+  background-color: #ff8a00; // orange bar
+  border-bottom: 2px solid #d46b00;
+}
+
+.pk-header__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo area */
+.pk-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+.pk-header__logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.pk-header__logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Nav menu */
+.pk-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pk-header__nav-item {
+  border: none;
+  background: transparent;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.pk-header__nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.pk-header__nav-item--active {
+  background-color: #ffffff;
+  color: #ff8a00;
+}
