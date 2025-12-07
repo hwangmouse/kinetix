@@ -2,15 +2,16 @@
 
 .upload-page {
   background-color: #ffffff;
-  min-height: calc(100vh - 120px); // leave some space for header + footer
-  padding: 24px 12px 0;
-  display: flex;
-  justify-content: center;
+  min-height: calc(100vh - 120px);
+  padding: 40px 5vw; // 화면 비율 기반 패딩
+  box-sizing: border-box;
 }
 
+/* 내용 폭은 화면 전체 but 최대 1400px로 제한 */
 .upload-page__inner {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1400px;
+  margin: 0 auto; // 중앙 정렬
 }
 
 /* Main orange bordered card */
