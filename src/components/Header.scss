@@ -1,71 +1,85 @@
-/* components/Header.scss */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+// 변수 설정 (색상)
+$primary-orange: #fb8500; // 이미지와 유사한 오렌지색
+$text-white: #ffffff;
+$text-active-blue: #023047; // Analyze 글자색 (진한 네이비)
+$bg-white: #ffffff;
 
-.pk-header {
-  width: 100%;
-  background-color: #ff8a00; // orange bar
-  border-bottom: 2px solid #d46b00;
-}
-
-.pk-header__inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 8px 16px;
+.header-container {
+  font-family: 'Poppins', sans-serif;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
+  width: 100%;
+  height: 80px; // 헤더 높이 예시
+  background-color: $bg-white;
+  padding-left: 20px; // 왼쪽 로고 여백
+  box-sizing: border-box;
 
-/* Logo area */
-.pk-header__logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: "Helvetica", "Arial", sans-serif;
-}
+  .logo-wrapper {
+    flex-shrink: 0; // 로고가 찌그러지지 않도록 설정
+    margin-right: 20px;
+    margin-top: 15px;
+    img {
+      height: 50px; // 로고 크기 조절 (필요에 따라 변경)
+      padding-left: 18px;
+      width: auto;
+      display: block;
+    }
+    .brand-name {
+      font-size: 1.2rem; // 글씨 크기
+      font-weight: 770;  // 굵게
+      color: $text-active-blue; // 로고 색상에 맞춘 네이비
+      letter-spacing: -0.5px; // 자간을 살짝 좁혀 단단한 느낌
+      line-height: 1;
+    }
+  }
 
-.pk-header__logo-mark {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: #ffffff;
-  font-size: 14px;
-}
+  .nav-bar {
+    flex-grow: 1; // 남은 공간을 모두 차지
+    background-color: $primary-orange;
+    height: 70%; // 헤더 높이만큼 꽉 채움 (이미지처럼 보이게 하려면 padding 조절로 변경 가능)
+    
+    // 왼쪽 위, 왼쪽 아래 모서리 둥글게 처리
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    
+    // 내용물 정렬
+    display: flex;
+    align-items: center;
+    padding: 0 40px; // 좌우 여백
 
-.pk-header__logo-text {
-  font-size: 18px;
-  font-weight: 700;
-  color: #ffffff;
-}
+    ul {
+      display: flex;
+      justify-content: center;
+      gap: 170px;
+      align-items: center;
+      list-style: none;
+      width: 100%;
+      margin: 0;
+      padding: 0;
 
-/* Nav menu */
-.pk-header__nav {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+      li {
+        a {
+          text-decoration: none;
+          color: $text-white;
+          font-size: 1.2rem;
+          font-weight: 600; // 굵은 글씨
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); // 흰 글씨에 살짝 그림자
 
-.pk-header__nav-item {
-  border: none;
-  background: transparent;
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #ffffff;
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
+          &:hover {
+            opacity: 0.8;
+          }
+        }
 
-.pk-header__nav-item:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.pk-header__nav-item--active {
-  background-color: #ffffff;
-  color: #ff8a00;
+        // 활성화된 메뉴 (Analyze) 스타일
+        &.active {
+          a {
+            color: $text-active-blue;
+            text-shadow: none; // 활성 상태에서는 그림자 제거 (이미지 느낌)
+          }
+        }
+      }
+    }
+  }
 }
