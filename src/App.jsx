@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="app-root">
       <Header />
-      <ResultPage />
+      <UploadPage />
       <Footer />
     </div>
   );

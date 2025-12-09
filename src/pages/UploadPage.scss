@@ -1,17 +1,16 @@
-/* pages/UploadPage.scss */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap');
+
 
 .upload-page {
   background-color: #ffffff;
   min-height: calc(100vh - 120px);
-  padding: 40px 5vw; // 화면 비율 기반 패딩
+  padding: 40px 5vw;
   box-sizing: border-box;
 }
 
-/* 내용 폭은 화면 전체 but 최대 1400px로 제한 */
 .upload-page__inner {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto; // 중앙 정렬
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 /* Main orange bordered card */
@@ -21,7 +20,7 @@
   padding: 20px 18px 24px;
   box-sizing: border-box;
   background-color: #ffffff;
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .upload-card__section {
@@ -45,48 +44,91 @@
   color: #ff8a00;
 }
 
-.upload-card__sub-label {
-  display: inline-block;
-  margin-bottom: 8px;
-  padding: 3px 6px;
-  border-radius: 3px;
-  background-color: #fffbdd;
-  border: 1px solid #ffcc4a;
-  font-size: 12px;
-  font-weight: 700;
-  color: #d18400;
+button.upload-card__label {
+  background-color: #ffffff;
+}
+
+.upload-card__label--toggle {
+  cursor: pointer;
+}
+
+.upload-card__label--active {
+  background-color: #fff7d6;
 }
 
 /* Pitching arm buttons */
 .upload-card__arm-buttons {
   display: flex;
-  gap: 16px;
+  gap: 40px;
   flex-wrap: wrap;
+  width: 100%;  /* ⬅ 컨테이너가 카드 폭을 꽉 채우도록 */
+  justify-content: space-between;  /* ⬅ 좌우로 균등 배치 (옵션) */
 }
 
 .upload-card__arm-button {
-  flex: 0 0 220px;
-  max-width: 220px;
-  padding: 10px 12px;
-  border-radius: 4px;
+  /* flex: 0 0 400px;
+  max-width: 400px; */
+  flex: 1 1 0;              /* ⬅ 남은 공간을 1:1로 나누어 사용 */
+
+  max-height: 130px; 
+
+  padding: 30px 30px;
+  border-radius: 8px;
   border: 2px solid #c2d6ff;
   background-color: #f4f7ff;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 70px;
   text-align: left;
   transition: border-color 0.15s ease, box-shadow 0.15s ease,
     background-color 0.15s ease;
+}
+
+/*  왼쪽(LEFT) 버튼 기본 색 – 연한 초록 */
+.upload-card__arm-button--left {
+  border-color: #7ac98a;
+  background-color: #f4fff6;
+}
+
+/*  오른쪽(RIGHT) 버튼 기본 색 – 연한 파랑 */
+.upload-card__arm-button--right {
+  border-color: #9fbafc;
+  background-color: #f4f7ff;
 }
 
 .upload-card__arm-button:hover {
   box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.15);
 }
 
-.upload-card__arm-button--active {
+
+/* LEFT 선택(active) 시 — 더 진한 초록 */
+.upload-card__arm-button--left.upload-card__arm-button--active {
+  border-color: #3c9952;
+  background-color: #d3fcdd;
+}
+
+/* RIGHT 선택(active) 시 — 더 진한 파랑 */
+.upload-card__arm-button--right.upload-card__arm-button--active {
   border-color: #0066cc;
-  background-color: #e9f2ff;
+  background-color: #cfdffb;
+}
+
+
+
+
+
+/* Pitching arm 이미지 (left/right) */
+.upload-card__arm-image {
+  width: 130px;
+  height: 115px;
+  object-fit: contain;
+}
+
+.upload-card__angle-image {
+  width: 120px;
+  height: 115px;
+  object-fit: contain;
 }
 
 .upload-card__arm-icon {
@@ -102,27 +144,38 @@
 }
 
 .upload-card__arm-text {
-  font-size: 13px;
+  font-size: 30px;
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.6;
 }
 
-/* Upload zones */
+/* === Drag & Drop Upload 영역 === */
 .upload-card__dropzone {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #d9d9d9;
-  border-radius: 4px;
-  height: 220px;
-  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 2px solid #000000;
+  height: 180px;
+  white-space: pre-line;
+
+  /* 가로 길이 줄이고 중앙 정렬 */
+  width: 65%;
+  margin: 0 auto;
+
   cursor: pointer;
   position: relative;
   text-align: center;
+  box-sizing: border-box;
+}
+
+.upload-card__dropzone--dragover {
+  border-style: dashed;
+  background-color: #DCDCDC;
 }
 
 .upload-card__file-input {
-  /* Hide real input but keep it clickable through label */
   position: absolute;
   inset: 0;
   opacity: 0;
@@ -130,8 +183,57 @@
 }
 
 .upload-card__dropzone-text {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
+}
+
+.upload-card__dropzone--dragover .upload-card__dropzone-text {
+  font-size: 27px;
+  font-weight: 700;
+}
+
+
+/* 파일 리스트 (두 번째 스크린샷 스타일) */
+.upload-card__file-list {
+  margin: 16px auto 0 auto; /* 위 여백 + 중앙 정렬 */
+  width: 59%;               /* dropzone과 동일한 가로 길이 */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  /*  5개 정도까지만 보이게 높이 제한 + 이후 스크롤 */
+  max-height: 330px;     /* 아이템 높이에 맞게 적당히 조절 가능 */
+  overflow-y: auto;
+  padding-right: 5px;    /* 스크롤바 때문에 내용 잘리는 것 방지 (선택사항) */
+}
+
+.upload-card__file-item {
+  width: 95%;              /* 리스트 폭을 꽉 채우기 */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 17px;
+  border-radius: 4px;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  font-size: 12px;
+}
+
+.upload-card__file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 12px;
+  flex: 1;
+}
+
+.upload-card__file-remove {
+  border: none;
+  background: none;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
 }
 
 /* Submit button */
@@ -141,16 +243,32 @@
   border-radius: 16px;
   border: 1px solid #b3b3b3;
   background-color: #e5e5e5;
-  cursor: pointer;
+  cursor: default;
   font-size: 14px;
   font-weight: 700;
-  transition: background-color 0.15s ease, transform 0.1s ease;
+  transition: background-color 0.15s ease, transform 0.1s ease, opacity 0.1s;
 }
 
-.upload-card__submit:hover {
+.upload-card__submit:not(:disabled) {
+  cursor: pointer;
+}
+
+.upload-card__submit:hover:not(:disabled) {
   background-color: #d5d5d5;
 }
 
-.upload-card__submit:active {
+.upload-card__submit:active:not(:disabled) {
   transform: translateY(1px);
+}
+
+.upload-card__submit:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+/* 업로드 개수 안내 */
+.upload-card__count-hint {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #555555;
 }
